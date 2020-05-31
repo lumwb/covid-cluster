@@ -1,0 +1,40 @@
+{
+    "version": 2,
+    "name": " ",
+    "builds": [
+        {
+            "src": "index.js",
+            "use": "@now/node-server"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/.*",
+            "dest": "index.js"
+        },
+        {
+            "src": "/covidCluster/getAllClusters",
+            "dest": "index.js",
+            "methods": ["GET"]
+        },
+        {
+            "src": "/covidCluster/neighbors?",
+            "dest": "index.js",
+            "methods": ["GET"]
+        },
+        {
+            "src": "/covidCluster",
+            "dest": "index.js",
+            "methods": ["POST"]
+        },
+        {
+            "src": "/covidCluster",
+            "dest": "index.js",
+            "methods": ["DELETE"]
+        }
+    ],
+    "env": {
+        "PORT": "9000",
+        "DATABASE_URL": "@my-mongodb-uri"
+    }
+}

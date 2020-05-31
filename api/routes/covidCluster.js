@@ -7,6 +7,7 @@ var { clusterController } = require('../controllers/clusterController');
 router.get("/neighbors", clusterController.getNeighbors);
 router.get("/getAllClusters", clusterController.getAllClusters);
 router.post("/", clusterController.addCluster);
+router.post("/init", clusterController.initFirstCluster);
 router.delete("/", clusterController.deleteCluster);
 
 module.exports = router;

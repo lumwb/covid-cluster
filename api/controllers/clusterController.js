@@ -171,6 +171,32 @@ class ClusterController {
             allCluster
         })
     }
+
+    async initFirstCluster(req, res) {
+        var baseClusterName = req.body.baseClusterName;
+        var baseClusterSide = req.body.baseClusterSide;
+        var newClusterName = req.body.newClusterName;
+
+        // validate that baseClusterSide is valid
+        if (!(0 <= baseClusterSide <= 5)) {
+            return res.status(500).send({
+                "error": "invalid cluster side. Please provide number in range 0-5"
+            });
+        }
+
+        try {
+            var saveNewCluster = await clusterProcessor.addCluster(newClusterName, 0, 0);
+        } catch (error) {
+            console.log(error);
+            return res.status(500).send({
+                "error": "Unexpected error saving new cluster."
+            })
+        }
+
+        return res.send({
+            newCluster: saveNewCluster
+        })
+    }
 }
 
 async function validateConnectedBFS(cluster, totalClusterCount) {
